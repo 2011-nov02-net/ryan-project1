@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Project1.BusinessLibrary.Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center welcome">
+    <h1 class="welcome-text">STREAM GAMES STORE.</h1>
+    <p class="welcome-small-text">THE #1 STORE TO BUY GAMES.</p>
+</div>
+<div class="products container">
+    <h1 class="products-header">Products</h1>
+</div>
+<br />
+<div class="container products-list">
+    @{
+        int counter = 0;
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="product-items">
+                        <span style="font-size: 24px; margin-top: 3em;">@Html.DisplayFor(modelItem => item.ProductName)</span><br />
+                        <a asp-action=""><img src="@Html.DisplayFor(modelItem => item.ProductImage)" style="width: 100px; height: 150px; margin-bottom: .5em;" /><br /></a>
+                        <a asp-action="" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> $@Html.DisplayFor(modelItem => item.ProductPrice)</a><br />
+                    </div>
+                </div>
+                counter++;
+                if (counter % 3 == 0)
+                {
+                    <!-- Force next columns to break to new line at md breakpoint and up -->
+                    <div class="w-100 d-none d-md-block"></div>
+                }
+            }
+        </div>
+    }
+</div>
