@@ -1,0 +1,50 @@
+﻿@model Project1.WebApp.Models.UserRegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg-6">
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h1 class="h3 mb-3 font-weight-normal" style="margin-top: 5em; text-align: center;">Register Account</h1>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="FirstName">First Name</label>
+                        <input asp-for="FirstName" type="email" class="form-control" placeholder="First Name" required autofocus>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="LastName">Last Name</label>
+                        <input asp-for="LastName" type="email" class="form-control" placeholder="Last Name" required autofocus>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <label asp-for="Email">Email address</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email address" required autofocus>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <br />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Password">Password Again</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password Again" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <button value="Register" class="btn btn-lg btn-info btn-block" type="submit">Register</button>
+            </form>
+        </div>
+        <div class="col-lg"></div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

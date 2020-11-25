@@ -24,5 +24,26 @@ namespace Project1.BusinessLibrary
             // map to business model
             return entities.Select(e => new Project1.BusinessLibrary.Product(e.Id, e.Name, e.Price, e.ProductImage));
         }
+
+        public string GetPassHash(string email)
+        {
+            //query db
+            var entities = _context.Users.Where(x => x.Email == email).Select(x => x.PasswordHash);
+            string hash = entities.First();
+
+            return hash;
+        }
+
+        public Customer GetCustomer(string email)
+        {
+            Customer customer = null;
+            var entities = _context.Users.Where(x => x.Email == email);
+            foreach(var c in entities)
+            {
+                customer = new Customer(c.Id, c.FirstName, c.LastName, c.UserType);
+            }
+
+            return customer;
+        }
     }
 }

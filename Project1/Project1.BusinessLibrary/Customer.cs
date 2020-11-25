@@ -25,5 +25,13 @@ namespace Project1.BusinessLibrary
             Email = email;
             PasswordHash = passHash;
         }
+
+        public Customer(int id, string first, string last, int type)
+        {
+            CustomerId = id;
+            FirstName = first;
+            LastName = last;
+            UserType = type;
+        }
     }
 }

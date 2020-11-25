@@ -1,0 +1,32 @@
+﻿@model Project1.WebApp.Models.UserModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-lg-6">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h1 class="h3 mb-3 font-weight-normal" style="margin-top: 5em; text-align: center;">Sign In or Register</h1>
+                <label asp-for="Email">Email address</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email address" autofocus>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <br />
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <br />
+                <button value="Login" class="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
+                <a asp-action="Register" class="btn btn-primary btn-lg btn-block">Register</a>
+            </form>
+        </div>
+        <div class="col-lg"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
