@@ -1,7 +1,27 @@
 ﻿@model IEnumerable<Project1.BusinessLibrary.Product>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Product";
+
+    var user_type = HttpContextAccessor.HttpContext.Request.Cookies["user_type"];
+    var user_id = HttpContextAccessor.HttpContext.Request.Cookies["user_id"];
+
+    if (user_type == "2")
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        if (user_id == null)
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+        }
+    }
 }
 
 <div class="text-center welcome">
@@ -10,6 +30,7 @@
 </div>
 <div class="products container">
     <h1 class="products-header">Products</h1>
+    <hr />
 </div>
 <br />
 <div class="container products-list">
@@ -19,12 +40,13 @@
             <!-- Loop through all products and create an item in products section for it -->
             @foreach (var item in Model)
             {
-                <div class="col">
+                <div class="col-md">
                     <div class="product-items">
                         <span style="font-size: 24px; margin-top: 3em;">@Html.DisplayFor(modelItem => item.ProductName)</span><br />
-                        <a asp-action=""><img src="@Html.DisplayFor(modelItem => item.ProductImage)" style="width: 100px; height: 150px; margin-bottom: .5em;" /><br /></a>
-                        <a asp-action="" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> $@Html.DisplayFor(modelItem => item.ProductPrice)</a><br />
+                        <a href="@Url.Action("Product", "Home", new { id = item.ProductId })"><img src="@Html.DisplayFor(modelItem => item.ProductImage)" style="width: 100px; height: 150px; margin-bottom: .5em;" /><br /></a>
+                        <a href="@Url.Action("Product", "Home", new { id = item.ProductId })" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> $@Html.DisplayFor(modelItem => item.ProductPrice)</a><br />
                     </div>
+                    <br />
                 </div>
                 counter++;
                 if (counter % 3 == 0)

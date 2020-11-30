@@ -45,5 +45,14 @@ namespace Project1.BusinessLibrary
 
             return customer;
         }
+
+        public IEnumerable<StoreLocation> GetLocations()
+        {
+            // query from DB
+            var entities = _context.StoreLocations.ToList();
+
+            // map to business model
+            return entities.Select(e => new Project1.BusinessLibrary.StoreLocation(e.Id, e.Name));
+        }
     }
 }

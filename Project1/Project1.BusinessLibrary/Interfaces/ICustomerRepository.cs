@@ -9,5 +9,6 @@ namespace Project1.BusinessLibrary.Interfaces
         IEnumerable<Product> GetProducts();
         string GetPassHash(string email);
         Customer GetCustomer(string email);
+        IEnumerable<StoreLocation> GetLocations();
     }
 }

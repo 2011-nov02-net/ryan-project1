@@ -25,9 +25,9 @@ namespace Project1.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(UserModel user)
+        public IActionResult Index()
         {
-            if (TempData["CustomerId"] != null)
+            if (HttpContext.Request.Cookies["user_id"] != null)
             {
                 var products = _repository.GetProducts();
                 return View(products);
@@ -49,26 +49,23 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(UserModel user)
         {
-            Console.WriteLine("\ninvalid\n");
             if (ModelState.IsValid)
             {
                 var userDbHash = _repository.GetPassHash(user.Email);
                 bool verify = BCrypt.Net.BCrypt.Verify(user.Password, userDbHash);
-                Console.WriteLine("\npassword\n");
                 if (verify == true)
                 {
                     //success
                     Customer c = _repository.GetCustomer(user.Email);
-                    TempData["CustomerId"] = c.CustomerId;
                     ViewData["FirstName"] = c.FirstName;
-                    TempData.Keep("CustomerId");
-                    Console.WriteLine("\ngood\n");
+                    HttpContext.Response.Cookies.Append("user_id", c.CustomerId.ToString());
+                    HttpContext.Response.Cookies.Append("user_type", c.UserType.ToString());
+                    HttpContext.Response.Cookies.Append("user_name", c.FirstName);
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     //incorrect password
-                    Console.WriteLine("\nbad\n");
                     ModelState.AddModelError("Password", "Incorrect Password.");
                     return View();
                 }
@@ -83,10 +80,34 @@ namespace Project1.Controllers
             return View();
         }
 
+        //GET Product
+        public IActionResult Product(int id)
+        {
+            var entity = _repository.GetProducts();
+
+            ProductLocationViewModel model = new ProductLocationViewModel();
+            model.locations = _repository.GetLocations().ToList();
+            model.product = entity.First(x => x.ProductId == id);
+
+            return View(model);
+        }
+
+        //Logout
         public IActionResult Logout()
         {
-            ViewData.Clear();
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+
             return RedirectToAction("Login");
         }
+
+        //Get Cart
+        public IActionResult Cart(List<BusinessLibrary.Product> products)
+        {
+            return View(products);
+        }
+
     }
 }
