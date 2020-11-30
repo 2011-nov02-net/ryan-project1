@@ -70,13 +70,41 @@ namespace Project1.Controllers
                     return View();
                 }
             }
-            Console.WriteLine();
+
             return View();
         }
 
         //GET Register
         public IActionResult Register()
         {
+            return View();
+        }
+
+        //POST Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(UserRegisterModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int lastId = _repository.GetLastCutomerId();
+                    var hash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                    Customer c = new Customer(lastId + 1, user.FirstName, user.LastName, 1, user.Email, hash);
+                    
+                    _repository.RegisterUser(c);
+
+                    Console.WriteLine("Created User");
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Error registering user: " + e);
+                }
+
+                return RedirectToAction("Login");
+            }
+
             return View();
         }
 

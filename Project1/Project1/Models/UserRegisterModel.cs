@@ -20,5 +20,10 @@ namespace Project1.WebApp.Models
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
+        [DataType(DataType.Password)]
+        public string MatchPassword { get; set; }
     }
 }

@@ -54,5 +54,26 @@ namespace Project1.BusinessLibrary
             // map to business model
             return entities.Select(e => new Project1.BusinessLibrary.StoreLocation(e.Id, e.Name));
         }
+
+        public void RegisterUser(Customer c)
+        {
+            User newUser = new User();
+            newUser.FirstName = c.FirstName;
+            newUser.LastName = c.LastName;
+            newUser.Email = c.Email;
+            newUser.UserType = 1;
+            newUser.PasswordHash = c.PasswordHash;
+
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+            Console.WriteLine("Created User in repo");
+        }
+
+        public int GetLastCutomerId()
+        {
+            var entities = _context.Users.OrderByDescending(x => x.Id);
+            var last = entities.First();
+            return last.Id;
+        }
     }
 }

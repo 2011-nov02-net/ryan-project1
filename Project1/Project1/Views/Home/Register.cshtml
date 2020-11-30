@@ -13,12 +13,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label asp-for="FirstName">First Name</label>
-                        <input asp-for="FirstName" type="email" class="form-control" placeholder="First Name" required autofocus>
+                        <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" required autofocus>
                         <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="LastName">Last Name</label>
-                        <input asp-for="LastName" type="email" class="form-control" placeholder="Last Name" required autofocus>
+                        <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name" required autofocus>
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
@@ -33,9 +33,9 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
-                        <label asp-for="Password">Password Again</label>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Password Again" required>
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <label asp-for="MatchPassword">Password Again</label>
+                        <input asp-for="MatchPassword" type="password" class="form-control" placeholder="Password Again" required>
+                        <span asp-validation-for="MatchPassword" class="text-danger"></span>
                     </div>
                 </div>
                 <br />

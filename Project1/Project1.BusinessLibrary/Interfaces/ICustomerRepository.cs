@@ -10,5 +10,7 @@ namespace Project1.BusinessLibrary.Interfaces
         string GetPassHash(string email);
         Customer GetCustomer(string email);
         IEnumerable<StoreLocation> GetLocations();
+        void RegisterUser(Customer c);
+        int GetLastCutomerId();
     }
 }
