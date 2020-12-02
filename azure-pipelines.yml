@@ -4,13 +4,18 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- main
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - Project1
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Project1'
+  buildConfiguration: Release
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
