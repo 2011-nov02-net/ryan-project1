@@ -20,13 +20,14 @@ variables:
 steps:
 #Use .Net 5
 - task: UseDotNet@2
-  displayName: 'Install .NET Core SDK'
+  displayName: 'Use .NET 5'
   inputs:
     version: 5.0.x
     performMultiLevelLookup: true
 
 #Prepare SonarCloud Analysis
 - task: SonarCloudPrepare@1
+  displayName: 'SonarCloud Prepare'
   inputs:
     SonarCloud: 'SonarCloud'
     organization: '2011-nov02-net'
@@ -52,6 +53,7 @@ steps:
     command: 'test'
     projects: '**/*.csproj'
     testRunTitle: 'Test Run'
+    publishTestResults: true
     workingDirectory: 'Project1'
 
 #Publish SonarCloud Results
