@@ -29,8 +29,10 @@ steps:
   workingDirectory: Project1
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
   inputs:
     command: 'publish'
     publishWebProjects: true
+    arguments: '$(build.artifactstagingdirectory)'
   
 - task: PublishBuildArtifacts@1
