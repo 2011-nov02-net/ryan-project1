@@ -31,17 +31,12 @@ steps:
     projects: '**/*.csproj'
     workingDirectory: 'Project1'
 
-- task: CopyFiles@2
-  inputs:
-    Contents: 'Project1/*.zip'
-    TargetFolder: $(build.artifactstagingdirectory)
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
   inputs:
     command: 'publish'
     publishWebProjects: true
-    #arguments: '$(build.artifactstagingdirectory)'
+    arguments: '-o $(build.artifactstagingdirectory)'
   
 - task: PublishBuildArtifacts@1
 
