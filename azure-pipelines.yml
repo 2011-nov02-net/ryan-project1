@@ -107,6 +107,6 @@ stages:
                 azureSubscription: 'Azure subscription 1 (0feb1fc7-c26d-42fa-a93a-5728459c2309)'
                 appType: 'webApp'
                 WebAppName: 'towner-project1'
-                packageForLinux: '$(System.ArtifactsDirectory)/app'
+                packageForLinux: '$(build.artifactstagingdirectory)/app'
 
 
