@@ -34,7 +34,9 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: '2011-nov02-net_ryan-project1'
     projectName: 'ryan-project1'
-    extraProperties: 'sonar.exclusions=**/lib/**'
+    extraProperties: |
+      sonar.exclusions=**/lib/**
+      #sonar.cs.opencover.reportsPaths =
 
 #Use .Net 5
 - task: UseDotNet@2
