@@ -54,6 +54,11 @@ steps:
     testRunTitle: 'Test Run'
     workingDirectory: 'Project1'
 
+#Publish SonarCloud Results
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+
 #Publish
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
