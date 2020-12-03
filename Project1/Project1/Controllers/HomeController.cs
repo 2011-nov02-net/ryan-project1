@@ -48,7 +48,7 @@ namespace Project1.Controllers
             {
                 var userDbHash = _repository.GetPassHash(user.Email);
                 bool verify = BCrypt.Net.BCrypt.Verify(user.Password, userDbHash);
-                if (verify == true)
+                if (verify)
                 {
                     //success
                     Customer c = _repository.GetCustomer(user.Email);

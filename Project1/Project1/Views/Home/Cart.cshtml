@@ -27,18 +27,19 @@
     <h1>@Html.DisplayName(HttpContextAccessor.HttpContext.Request.Cookies["user_name"])Products</h1>
 
     <table class="table">
+        <caption>Shopping Cart</caption>
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductName)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductPrice)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductQty)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
