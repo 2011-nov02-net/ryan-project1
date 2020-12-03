@@ -74,10 +74,11 @@ steps:
 #Publish
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '-o $(build.artifactstagingdirectory)'
   
-- task: PublishBuildArtifacts@1
+#- task: PublishBuildArtifacts@1
 
