@@ -8,24 +8,25 @@
 <div class="container">
     <h1>Orders</h1>
     <table class="table">
+        <caption>All Stream's Customers Orders</caption>
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.OrderId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.OrderCustomerId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.OrderStoreLocationId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.OrderTime)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.OrderTotal)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

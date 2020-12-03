@@ -8,27 +8,28 @@
 <div class="container">
     <h1>Users</h1>
     <table class="table">
+        <caption>All Stream's Users</caption>
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.CustomerId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.LastName)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.UserType)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.PasswordHash)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -54,8 +55,8 @@
                         @Html.DisplayFor(modelItem => item.PasswordHash)
                     </td>
                     <td>
-                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
             }

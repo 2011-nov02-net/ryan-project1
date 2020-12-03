@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <!---<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - STREAM</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -33,10 +33,10 @@
                             <span class="nav-link text-light">Hello, @HttpContextAccessor.HttpContext.Request.Cookies["user_name"].ToString() | </span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Cart"><i class="fas fa-shopping-cart"></i> Cart | </a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Cart"><em class="fas fa-shopping-cart"></em> Cart | </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Logout"><em class="fas fa-sign-out-alt"></em> Logout</a>
                         </li>
                     </ul>
                 </div>

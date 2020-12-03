@@ -11,15 +11,16 @@
         <a asp-action="Create">Create New</a>
     </p>
     <table class="table">
+        <caption>All Stream's Store Locations</caption>
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.StoreLocationId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.StoreLocationName)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

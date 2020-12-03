@@ -11,24 +11,25 @@
         <a asp-action="Create">Create New</a>
     </p>
     <table class="table">
+        <caption>All Stream's Game Products</caption>
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductId)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductName)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductPrice)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductQty)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductImage)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
