@@ -18,12 +18,23 @@ variables:
   buildConfiguration: Release
 
 steps:
+#Use .Net 5
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
   inputs:
     version: 5.0.x
     performMultiLevelLookup: true
 
+#Prepare SonarCloud Analysis
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'ryantowner'
+    scannerMode: 'MSBuild'
+    projectKey: 'ryantowner_project1'
+    projectName: 'project1'
+
+#Build
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
@@ -31,6 +42,19 @@ steps:
     projects: '**/*.csproj'
     workingDirectory: 'Project1'
 
+#Run SonarCloud Analysis
+- task: SonarCloudAnalyze@1
+
+#Run Tests
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    projects: '**/*.csproj'
+    testRunTitle: 'Test Run'
+    workingDirectory: 'Project1'
+
+#Publish
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
   inputs:
