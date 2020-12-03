@@ -25,10 +25,16 @@ steps:
     performMultiLevelLookup: true
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     workingDirectory: 'Project1'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: '**'
+    TargetFolder: $(build.artifactstagingdirectory)
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
