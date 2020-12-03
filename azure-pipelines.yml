@@ -90,6 +90,7 @@ stages:
 - stage: release
   jobs:
   - deployment: app_service
+    environment: prod
     displayName: 'deployment'
     strategy:
       runOnce:
