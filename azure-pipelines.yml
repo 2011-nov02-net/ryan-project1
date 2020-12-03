@@ -18,11 +18,11 @@ variables:
   buildConfiguration: Release
 
 steps:
-#Use .Net 5
+#Use .Net 1 For SonarCloud
 - task: UseDotNet@2
-  displayName: 'Use .NET 5'
+  displayName: 'Use .NET 2'
   inputs:
-    version: 5.0.x
+    version: 2.0.x
     performMultiLevelLookup: true
 
 #Prepare SonarCloud Analysis
@@ -34,6 +34,13 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: '2011-nov02-net_ryan-project1'
     projectName: 'ryan-project1'
+
+#Use .Net 5
+- task: UseDotNet@2
+  displayName: 'Use .NET 5'
+  inputs:
+    version: 5.0.x
+    performMultiLevelLookup: true
 
 #Build
 - task: DotNetCoreCLI@2
