@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project1.BusinessLibrary;
 using Project1.BusinessLibrary.Interfaces;
-using Project1.DataAccess.Entities;
-using Project1.Models;
 using Project1.WebApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using BCrypt;
-using Project1.BusinessLibrary;
 
 namespace Project1.Controllers
 {
@@ -92,12 +87,12 @@ namespace Project1.Controllers
                     int lastId = _repository.GetLastCutomerId();
                     var hash = BCrypt.Net.BCrypt.HashPassword(user.Password);
                     Customer c = new Customer(lastId + 1, user.FirstName, user.LastName, 1, user.Email, hash);
-                    
+
                     _repository.RegisterUser(c);
 
                     Console.WriteLine("Created User");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine("Error registering user: " + e);
                 }

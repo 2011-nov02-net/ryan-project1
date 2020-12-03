@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Project1.BusinessLibrary.Interfaces;
+﻿using Project1.BusinessLibrary.Interfaces;
 
 namespace Project1.BusinessLibrary
 {

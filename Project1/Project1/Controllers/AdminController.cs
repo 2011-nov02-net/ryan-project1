@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Project1.DataAccess.Entities;
-using Project1.BusinessLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project1.BusinessLibrary.Interfaces;
 
 namespace Project1.WebApp.Controllers

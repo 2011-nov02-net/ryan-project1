@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project1.BusinessLibrary
+﻿namespace Project1.BusinessLibrary
 {
     /// <summary>
     /// Customer class. Contains customers fields and constructor

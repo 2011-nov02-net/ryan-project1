@@ -3,7 +3,6 @@ using Project1.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Project1.BusinessLibrary
 {
@@ -38,7 +37,7 @@ namespace Project1.BusinessLibrary
         {
             Customer customer = null;
             var entities = _context.Users.Where(x => x.Email == email);
-            foreach(var c in entities)
+            foreach (var c in entities)
             {
                 customer = new Customer(c.Id, c.FirstName, c.LastName, c.UserType);
             }
