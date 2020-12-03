@@ -33,7 +33,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**'
+    Contents: 'Project1/*.zip'
     TargetFolder: $(build.artifactstagingdirectory)
 
 - task: DotNetCoreCLI@2
@@ -44,3 +44,4 @@ steps:
     #arguments: '$(build.artifactstagingdirectory)'
   
 - task: PublishBuildArtifacts@1
+
