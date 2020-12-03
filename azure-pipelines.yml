@@ -84,4 +84,28 @@ stages:
         publishWebProjects: true
         arguments: '-o $(build.artifactstagingdirectory)'
       
-    - task: PublishBuildArtifacts@1
+    - publish: $(build.artifactstagingdirectory)
+      artifact: app
+
+- stage: release
+  jobs:
+  - deployment: app-service
+    displayName: 'deployment'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - download: current
+              artifact: app
+              displayName: download app
+            - task: AzureRmWebAppDeployment@4
+              displayName: deploy web app
+              condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+              inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'Azure subscription 1 (0feb1fc7-c26d-42fa-a93a-5728459c2309)'
+                appType: 'webApp'
+                WebAppName: 'towner-project1'
+                packageForLinux: 'app'
+
+
