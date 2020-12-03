@@ -24,10 +24,6 @@ steps:
     version: 5.0.x
     performMultiLevelLookup: true
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: dotnet build
-  workingDirectory: Project1
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
