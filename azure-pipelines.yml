@@ -41,7 +41,7 @@ stages:
         projectName: 'ryan-project1'
         extraProperties: |
           sonar.exclusions=**/lib/**
-          sonar.cs.opencover.reportsPaths = $(Build.SourcesDirectory)/**/coverage.opencover.xml
+          sonar.cs.opencover.reportsPaths = $(Agent.TempDirectory)/**/coverage.opencover.xml
 
     #Use .Net 5
     - task: UseDotNet@2
