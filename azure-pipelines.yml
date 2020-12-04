@@ -58,14 +58,6 @@ stages:
         projects: '**/*.csproj'
         workingDirectory: 'Project1'
 
-    #Run SonarCloud Analysis
-    - task: SonarCloudAnalyze@1
-
-    #Publish SonarCloud Results
-    - task: SonarCloudPublish@1
-      inputs:
-        pollingTimeoutSec: '300'
-
     #Run Tests
     - task: DotNetCoreCLI@2
       displayName: 'dotnet test'
@@ -76,6 +68,14 @@ stages:
         testRunTitle: 'Test Run'
         publishTestResults: true
         workingDirectory: 'Project1'
+
+    #Run SonarCloud Analysis
+    - task: SonarCloudAnalyze@1
+
+    #Publish SonarCloud Results
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
 
     #Publish
     - task: DotNetCoreCLI@2
