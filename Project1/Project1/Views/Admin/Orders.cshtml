@@ -6,16 +6,16 @@
 }
 
 <div class="container">
-    <h1>Orders</h1>
+    <h1 style="margin-top: 1em;">Orders</h1>
     <form asp-controller="Admin" asp-action="Orders" method="get">
         <p>
             Order ID: <input type="text" asp-for="id" />
             <input type="submit" value="Filter" />
         </p>
     </form>
-    <table class="table">
+    <table class="table table-striped">
         <caption>All Stream's Customers Orders</caption>
-        <thead>
+        <thead style="background-color: #007bff; color: #f8f9fa">
             <tr>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Orders[0].OrderId)

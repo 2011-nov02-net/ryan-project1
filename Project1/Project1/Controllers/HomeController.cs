@@ -114,9 +114,9 @@ namespace Project1.Controllers
             model.locations = _repository.GetLocations().ToList();
             model.ProductId = p.ProductId;
             model.ProductName = p.ProductName;
-            model.ProductPrice= p.ProductPrice;
+            model.ProductPrice = p.ProductPrice;
             model.ProductImage = p.ProductImage;
-            
+
 
             ViewBag.Success = false;
 
@@ -169,7 +169,7 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Cart(List<Product> p)
         {
-            
+
             return View();
         }
 

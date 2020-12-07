@@ -5,16 +5,16 @@
 }
 
 <div class="container">
-    <h1>Users</h1>
+    <h1 style="margin-top: 1em;">Users</h1>
     <form asp-controller="Admin" asp-action="Users" method="get">
         <p>
             Customer ID: <input type="text" asp-for="id" />
             <input type="submit" value="Filter" />
         </p>
     </form>
-    <table class="table">
+    <table class="table table-striped">
         <caption>All Stream's Users</caption>
-        <thead>
+        <thead style="background-color: #007bff; color: #f8f9fa">
             <tr>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Customers[0].CustomerId)

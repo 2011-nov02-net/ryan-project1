@@ -6,7 +6,7 @@
 }
 
 <div class="container">
-    <h1>Locations</h1>
+    <h1 style="margin-top: 1em;">Locations</h1>
     <p>
         <a asp-action="Create">Create New</a>
     </p>
@@ -16,9 +16,9 @@
             <input type="submit" value="Filter" />
         </p>
     </form>
-    <table class="table">
+    <table class="table table-striped">
         <caption>All Stream's Store Locations</caption>
-        <thead>
+        <thead style="background-color: #007bff; color: #f8f9fa">
             <tr>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Locations[0].StoreLocationId)

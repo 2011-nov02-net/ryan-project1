@@ -7,10 +7,10 @@
 }
 
 <div class="container">
-    <h1>Order Details</h1>
-    <table class="table">
+    <h1 style="margin-top: 1em;">Order Details</h1>
+    <table class="table table-striped">
         <caption>Order's Products</caption>
-        <thead>
+        <thead style="background-color: #007bff; color: #f8f9fa">
             <tr>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.ProductId)
@@ -48,5 +48,5 @@
             }
         </tbody>
     </table>
-    <p style="text-align: right"><b>Order Total: $@total.ToString("0.##")</b></p>
+    <p style="text-align: right"><strong>Order Total: $@total.ToString("0.##")</strong></p>
 </div>
