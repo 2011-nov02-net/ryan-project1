@@ -74,5 +74,13 @@ namespace Project1.BusinessLibrary
             var last = entities.First();
             return last.Id;
         }
+
+        public Product GetProductFromId(int id)
+        {
+            var entities = _context.Products.ToList();
+            var p = entities.Where(x => x.Id == id).First();
+
+            return new Product(p.Id, p.Name, p.Price, p.ProductImage);
+        }
     }
 }

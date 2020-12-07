@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project1.BusinessLibrary.StoreLocation>
+﻿@model Project1.WebApp.Models.AdminLocationModel
 
 @{
     ViewData["Title"] = "Locations";
@@ -10,21 +10,27 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
+    <form asp-controller="Admin" asp-action="Locations" method="get">
+        <p>
+            Location ID: <input type="text" asp-for="id" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <caption>All Stream's Store Locations</caption>
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.StoreLocationId)
+                    @Html.DisplayNameFor(model => model.Locations[0].StoreLocationId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.StoreLocationName)
+                    @Html.DisplayNameFor(model => model.Locations[0].StoreLocationName)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Locations)
             {
                 <tr>
                     <td>

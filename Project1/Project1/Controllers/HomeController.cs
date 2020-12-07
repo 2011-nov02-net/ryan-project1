@@ -14,6 +14,8 @@ namespace Project1.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICustomerRepository _repository;
 
+        private List<Product> cart = new List<Product>();
+
         public HomeController(ILogger<HomeController> logger, ICustomerRepository repository)
         {
             _logger = logger;
@@ -106,13 +108,40 @@ namespace Project1.Controllers
         //GET Product
         public IActionResult Product(int id)
         {
-            var entity = _repository.GetProducts();
-
+            Console.WriteLine(cart.Count);
             ProductLocationViewModel model = new ProductLocationViewModel();
+            Product p = _repository.GetProductFromId(id);
             model.locations = _repository.GetLocations().ToList();
-            model.product = entity.First(x => x.ProductId == id);
+            model.ProductId = p.ProductId;
+            model.ProductName = p.ProductName;
+            model.ProductPrice= p.ProductPrice;
+            model.ProductImage = p.ProductImage;
+            
+
+            ViewBag.Success = false;
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Product(ProductLocationViewModel p)
+        {
+            if (ModelState.IsValid)
+            {
+                Product item = _repository.GetProductFromId(p.ProductId);
+                item.ProductQty = p.ProductQty;
+                cart.Add(item);
+                ViewBag.Success = true;
+                Console.WriteLine(cart.Count);
+
+                ProductLocationViewModel model = p;
+
+                return View(model);
+            }
+
+            ModelState.AddModelError("", "Error adding item to cart");
+            return View(p);
         }
 
         //Logout
@@ -127,9 +156,21 @@ namespace Project1.Controllers
         }
 
         //Get Cart
-        public IActionResult Cart(List<BusinessLibrary.Product> products)
+        public IActionResult Cart()
         {
-            return View(products);
+            Console.WriteLine(cart.Count);
+            cart.Add(new Product(1, "cyberpunk", 59, 1, "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"));
+            Console.WriteLine(cart.Count);
+            return View(cart);
+        }
+
+        //Post Cart
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Cart(List<Product> p)
+        {
+            
+            return View();
         }
 
     }

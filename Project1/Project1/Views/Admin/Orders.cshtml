@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project1.BusinessLibrary.Order>
+﻿@model Project1.WebApp.Models.AdminOrderModel
 
 @{
     ViewData["Title"] = "Orders";
@@ -7,30 +7,36 @@
 
 <div class="container">
     <h1>Orders</h1>
+    <form asp-controller="Admin" asp-action="Orders" method="get">
+        <p>
+            Order ID: <input type="text" asp-for="id" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <caption>All Stream's Customers Orders</caption>
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.OrderId)
+                    @Html.DisplayNameFor(model => model.Orders[0].OrderId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.OrderCustomerId)
+                    @Html.DisplayNameFor(model => model.Orders[0].OrderCustomerId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.OrderStoreLocationId)
+                    @Html.DisplayNameFor(model => model.Orders[0].OrderStoreLocationId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.OrderTime)
+                    @Html.DisplayNameFor(model => model.Orders[0].OrderTime)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.OrderTotal)
+                    @Html.DisplayNameFor(model => model.Orders[0].OrderTotal)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Orders)
             {
                 <tr>
                     <td>
@@ -49,7 +55,7 @@
                         @Html.DisplayFor(modelItem => item.OrderTotal)
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Details", "OrderDetails", new { id=item.OrderId })
                     </td>
                 </tr>
             }

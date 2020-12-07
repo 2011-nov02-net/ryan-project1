@@ -10,5 +10,6 @@ namespace Project1.BusinessLibrary.Interfaces
         IEnumerable<StoreLocation> GetLocations();
         void RegisterUser(Customer c);
         int GetLastCutomerId();
+        Product GetProductFromId(int id);
     }
 }

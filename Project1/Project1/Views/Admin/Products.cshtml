@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Project1.BusinessLibrary.Product>
+﻿@model Project1.WebApp.Models.AdminProductModel
 
 @{
     ViewData["Title"] = "Products";
@@ -10,30 +10,36 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
+    <form asp-controller="Admin" asp-action="Products" method="get">
+        <p>
+            Product ID: <input type="text" asp-for="id" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <caption>All Stream's Game Products</caption>
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.ProductId)
+                    @Html.DisplayNameFor(model => model.Products[0].ProductId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.ProductName)
+                    @Html.DisplayNameFor(model => model.Products[0].ProductName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.ProductPrice)
+                    @Html.DisplayNameFor(model => model.Products[0].ProductPrice)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.ProductQty)
+                    @Html.DisplayNameFor(model => model.Products[0].ProductQty)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.ProductImage)
+                    @Html.DisplayNameFor(model => model.Products[0].ProductImage)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Products)
             {
                 <tr>
                     <td>

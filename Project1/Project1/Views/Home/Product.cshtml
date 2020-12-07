@@ -27,19 +27,27 @@
 }
 
 <div class="container">
+    @if (ViewBag.Success = false)
+    {
+        <div class="alert alert-success" role="alert">
+            Item added to cart
+        </div>
+    }
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row" style="margin-top: 10em;">
         <div class="col-sm">
             <div class="product-image">
-                <img src="@Html.DisplayFor(x => x.product.ProductImage)" alt="Game Case Image" style="width: 300px; height: 350px;" />
+                <img src="@Html.DisplayFor(x => x.ProductImage)" alt="Game Case Image" style="width: 300px; height: 350px;" />
             </div>
         </div>
         <div class="col-sm">
             <div style="margin-top: 2em;">
-                <h3>@Html.DisplayFor(x => x.product.ProductName)</h3>
-                <h4>$@Html.DisplayFor(x => x.product.ProductPrice)</h4>
-                <p>Qty In Stock: @Html.DisplayFor(x => x.product.ProductQty)</p>
+                <h3>@Html.DisplayFor(x => x.ProductName)</h3>
+                <h4>$@Html.DisplayFor(x => x.ProductPrice)</h4>
+                <p>Qty In Stock: @Html.DisplayFor(x => x.ProductQty)</p>
                 <div class="form-group">
                     <label for="locationSelect">Select a Store:</label>
+                    @*
                     <select class="form-control" id="locationSelect">
                         @{
                             foreach (var l in Model.locations)
@@ -47,19 +55,20 @@
                                 <option>@Html.DisplayFor(modelItem => l.StoreLocationName)</option>
                             }
                         }
-                    </select>
+                    </select>*@
                 </div>
-                <div class="form-inline">
-                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                <form class="form-inline" asp-action="Product">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
                     <label for="locationSelect" style="padding: 0 1em 0 1em">Qty:</label>
-                    <select class="form-control" id="locationSelect">
+                    <select class="form-control" id="locationSelect" asp-for="ProductQty">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
                     </select>
-                </div>
+                    <input asp-for="ProductId" value="@Html.DisplayFor(x => x.ProductId)"/>
+                </form>
             </div>
         </div>
     </div>

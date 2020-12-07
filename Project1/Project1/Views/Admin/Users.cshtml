@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Project1.BusinessLibrary.Customer>
-
+﻿@model Project1.WebApp.Models.AdminUserModel
 @{
     ViewData["Title"] = "Users";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -7,33 +6,39 @@
 
 <div class="container">
     <h1>Users</h1>
+    <form asp-controller="Admin" asp-action="Users" method="get">
+        <p>
+            Customer ID: <input type="text" asp-for="id" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <caption>All Stream's Users</caption>
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.CustomerId)
+                    @Html.DisplayNameFor(model => model.Customers[0].CustomerId)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.Customers[0].FirstName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.DisplayNameFor(model => model.Customers[0].LastName)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.UserType)
+                    @Html.DisplayNameFor(model => model.Customers[0].UserType)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.DisplayNameFor(model => model.Customers[0].Email)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.PasswordHash)
+                    @Html.DisplayNameFor(model => model.Customers[0].PasswordHash)
                 </th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Customers)
             {
                 <tr>
                     <td>
