@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -30,7 +28,6 @@ namespace Project1.DataAccess.Entities
             if (!optionsBuilder.IsConfigured)
             {
 
-                //optionsBuilder.UseSqlServer();
             }
         }
 

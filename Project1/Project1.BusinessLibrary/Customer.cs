@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Project1.BusinessLibrary
+﻿namespace Project1.BusinessLibrary
 {
     /// <summary>
     /// Customer class. Contains customers fields and constructor

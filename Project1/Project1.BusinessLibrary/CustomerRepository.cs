@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project1.BusinessLibrary.Interfaces;
 using Project1.DataAccess.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -173,7 +172,7 @@ namespace Project1.BusinessLibrary
         /// <param name="lastId"></param>
         public void PlaceOrderItems(List<Product> items, int lastId)
         {
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 Project1.DataAccess.Entities.OrderProduct op = new Project1.DataAccess.Entities.OrderProduct();
                 op.OrderId = lastId;

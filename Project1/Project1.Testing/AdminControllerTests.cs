@@ -5,8 +5,6 @@ using Project1.BusinessLibrary.Interfaces;
 using Project1.WebApp.Controllers;
 using Project1.WebApp.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Project1.Testing

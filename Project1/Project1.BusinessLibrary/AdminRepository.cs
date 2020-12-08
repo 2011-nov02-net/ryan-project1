@@ -59,7 +59,7 @@ namespace Project1.BusinessLibrary
             // query from DB
             var entities = _context.StoreLocations.ToList();
             IEnumerable<StoreLocation> locations = null;
-            
+
             //Filter & Map to object
             if (!string.IsNullOrEmpty(search))
             {
@@ -97,7 +97,7 @@ namespace Project1.BusinessLibrary
             List<Product> products = new List<Product>();
             var orderProducts = _context.OrderProducts.Include(p => p.Product).Where(o => o.OrderId == id);
 
-            foreach(var item in orderProducts)
+            foreach (var item in orderProducts)
             {
                 products.Add(new Project1.BusinessLibrary.Product(item.ProductId, item.Product.Name, item.ProductPricePaid, item.ProductQty, item.Product.ProductImage));
             }

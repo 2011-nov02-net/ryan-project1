@@ -14,10 +14,5 @@ namespace Project1.WebApp.Models
         public decimal ProductPrice { get; set; }
 
         public int LocationId { get; set; }
-
-        public ProductLocationViewModel()
-        {
-            List<StoreLocation> locations = new List<StoreLocation>();
-        }
     }
 }

@@ -6,7 +6,6 @@ using Project1.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Project1.Controllers
 {
@@ -230,7 +229,7 @@ namespace Project1.Controllers
                 total += item.ProductPrice * item.ProductQty;
             }
 
-            Order order = new Order(order_id + 1, Int32.Parse(user_id), DateTime.Now, 1 , total);
+            Order order = new Order(order_id + 1, Int32.Parse(user_id), DateTime.Now, 1, total);
             _repository.PlaceOrder(order);
 
             //place order items
