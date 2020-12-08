@@ -5,7 +5,6 @@ namespace Project1.WebApp.Models
 {
     public class ProductLocationViewModel
     {
-        //public Product product { get; set; }
         public List<StoreLocation> locations { get; set; }
 
         public int ProductId { get; set; }
@@ -14,5 +13,11 @@ namespace Project1.WebApp.Models
         public string ProductImage { get; set; }
         public decimal ProductPrice { get; set; }
 
+        public int LocationId { get; set; }
+
+        public ProductLocationViewModel()
+        {
+            List<StoreLocation> locations = new List<StoreLocation>();
+        }
     }
 }

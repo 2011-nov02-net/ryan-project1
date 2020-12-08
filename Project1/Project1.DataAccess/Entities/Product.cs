@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 #nullable disable
 
@@ -8,6 +9,7 @@ namespace Project1.DataAccess.Entities
     {
         public Product()
         {
+            Carts = new HashSet<Cart>();
             OrderProducts = new HashSet<OrderProduct>();
             StoreInventories = new HashSet<StoreInventory>();
         }
@@ -17,6 +19,7 @@ namespace Project1.DataAccess.Entities
         public decimal Price { get; set; }
         public string ProductImage { get; set; }
 
+        public virtual ICollection<Cart> Carts { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
         public virtual ICollection<StoreInventory> StoreInventories { get; set; }
     }

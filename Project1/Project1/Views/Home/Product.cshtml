@@ -27,10 +27,13 @@
 }
 
 <div class="container">
-    @if (ViewBag.Success = false)
+    @if (TempData["Success"].Equals("1") && TempData["Success"] != null)
     {
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             Item added to cart
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     }
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -45,29 +48,29 @@
                 <h3>@Html.DisplayFor(x => x.ProductName)</h3>
                 <h4>$@Html.DisplayFor(x => x.ProductPrice)</h4>
                 <p>Qty In Stock: @Html.DisplayFor(x => x.ProductQty)</p>
-                <div class="form-group">
-                    <label for="locationSelect">Select a Store:</label>
-                    @*
-                    <select class="form-control" id="locationSelect">
-                        @{
-                            foreach (var l in Model.locations)
-                            {
-                                <option>@Html.DisplayFor(modelItem => l.StoreLocationName)</option>
-                            }
-                        }
-                    </select>*@
-                </div>
                 <form class="form-inline" asp-action="Product">
+                    <div class="form-group">
+                        <label for="locationSelect">Select a Store:</label>
+                        <select class="form-control" id="locationSelect" asp-for="LocationId">
+                            @{
+                                foreach (var l in Model.locations)
+                                {
+                                    <option value="@l.StoreLocationId">@Html.DisplayFor(modelItem => l.StoreLocationName)</option>
+                                }
+                            }
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                     <label for="locationSelect" style="padding: 0 1em 0 1em">Qty:</label>
-                    <select class="form-control" id="locationSelect" asp-for="ProductQty">
+                    <select class="form-control" id="qtySelect" asp-for="ProductQty">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
                     </select>
-                    <input asp-for="ProductId" value="@Html.DisplayFor(x => x.ProductId)"/>
+                    @Html.HiddenFor(x => x.ProductId)
+                    @Html.HiddenFor(x => x.ProductPrice)
                 </form>
             </div>
         </div>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Project1.DataAccess.Entities
+namespace Project1.WebApp.Entities
 {
     public partial class StoreLocation
     {

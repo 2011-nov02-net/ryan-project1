@@ -6,6 +6,7 @@ using Project1.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Project1.Controllers
 {
@@ -13,8 +14,6 @@ namespace Project1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICustomerRepository _repository;
-
-        private List<Product> cart = new List<Product>();
 
         public HomeController(ILogger<HomeController> logger, ICustomerRepository repository)
         {
@@ -91,8 +90,6 @@ namespace Project1.Controllers
                     Customer c = new Customer(lastId + 1, user.FirstName, user.LastName, 1, user.Email, hash);
 
                     _repository.RegisterUser(c);
-
-                    Console.WriteLine("Created User");
                 }
                 catch (Exception e)
                 {
@@ -108,7 +105,6 @@ namespace Project1.Controllers
         //GET Product
         public IActionResult Product(int id)
         {
-            Console.WriteLine(cart.Count);
             ProductLocationViewModel model = new ProductLocationViewModel();
             Product p = _repository.GetProductFromId(id);
             model.locations = _repository.GetLocations().ToList();
@@ -117,8 +113,8 @@ namespace Project1.Controllers
             model.ProductPrice = p.ProductPrice;
             model.ProductImage = p.ProductImage;
 
-
-            ViewBag.Success = false;
+            TempData["Success"] = "0";
+            TempData.Keep("Success");
 
             return View(model);
         }
@@ -129,13 +125,21 @@ namespace Project1.Controllers
         {
             if (ModelState.IsValid)
             {
-                Product item = _repository.GetProductFromId(p.ProductId);
-                item.ProductQty = p.ProductQty;
-                cart.Add(item);
-                ViewBag.Success = true;
-                Console.WriteLine(cart.Count);
+                ProductLocationViewModel model = new ProductLocationViewModel();
+                Product prod = _repository.GetProductFromId(p.ProductId);
+                model.ProductId = prod.ProductId;
+                model.ProductName = prod.ProductName;
+                model.ProductPrice = prod.ProductPrice;
+                model.ProductImage = prod.ProductImage;
+                model.locations = _repository.GetLocations().ToList();
 
-                ProductLocationViewModel model = p;
+
+                var user_id = HttpContext.Request.Cookies["user_id"];
+                Product item = new Product(p.ProductId, p.ProductName, p.ProductPrice, p.ProductQty, p.ProductImage);
+                _repository.AddItemToCart(item, Int32.Parse(user_id), p.LocationId);
+
+                TempData["Success"] = "1";
+                TempData.Keep("Success");
 
                 return View(model);
             }
@@ -158,9 +162,10 @@ namespace Project1.Controllers
         //Get Cart
         public IActionResult Cart()
         {
-            Console.WriteLine(cart.Count);
-            cart.Add(new Product(1, "cyberpunk", 59, 1, "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"));
-            Console.WriteLine(cart.Count);
+            //Get cart from db
+            var user_id = HttpContext.Request.Cookies["user_id"];
+            List<Product> cart = _repository.GetCart(Int32.Parse(user_id)).ToList();
+
             return View(cart);
         }
 
@@ -169,6 +174,11 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Cart(List<Product> p)
         {
+            //place order
+
+
+            //clear cart
+
 
             return View();
         }

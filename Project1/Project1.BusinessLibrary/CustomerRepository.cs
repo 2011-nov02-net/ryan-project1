@@ -65,7 +65,6 @@ namespace Project1.BusinessLibrary
 
             _context.Users.Add(newUser);
             _context.SaveChanges();
-            Console.WriteLine("Created User in repo");
         }
 
         public int GetLastCutomerId()
@@ -81,6 +80,26 @@ namespace Project1.BusinessLibrary
             var p = entities.Where(x => x.Id == id).First();
 
             return new Product(p.Id, p.Name, p.Price, p.ProductImage);
+        }
+
+        public void AddItemToCart(Product p, int custId, int locationId)
+        {
+            Cart cart = new Cart();
+            cart.UserId = custId;
+            cart.ProductId = p.ProductId;
+            cart.LocationId = locationId;
+            cart.ProductQty = p.ProductQty;
+            cart.ProductPricePaid = p.ProductPrice;
+
+            _context.Carts.Add(cart);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Product> GetCart(int userid)
+        {
+            var entities = _context.Carts.Where(x => x.UserId == userid);
+
+            return entities.Select(e => new Product(e.ProductId, e.Product.Name, e.ProductPricePaid, e.ProductQty, e.LocationId));
         }
     }
 }

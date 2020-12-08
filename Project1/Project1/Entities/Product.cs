@@ -3,22 +3,24 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Project1.DataAccess.Entities
+namespace Project1.WebApp.Entities
 {
-    public partial class StoreLocation
+    public partial class Product
     {
-        public StoreLocation()
+        public Product()
         {
             Carts = new HashSet<Cart>();
-            Orders = new HashSet<Order>();
+            OrderProducts = new HashSet<OrderProduct>();
             StoreInventories = new HashSet<StoreInventory>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string ProductImage { get; set; }
 
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
         public virtual ICollection<StoreInventory> StoreInventories { get; set; }
     }
 }

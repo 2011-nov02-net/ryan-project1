@@ -11,5 +11,7 @@ namespace Project1.BusinessLibrary.Interfaces
         void RegisterUser(Customer c);
         int GetLastCutomerId();
         Product GetProductFromId(int id);
+        void AddItemToCart(Product p, int custId, int locationId);
+        IEnumerable<Product> GetCart(int userid);
     }
 }
