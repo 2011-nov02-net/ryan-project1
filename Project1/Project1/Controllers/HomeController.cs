@@ -206,6 +206,9 @@ namespace Project1.Controllers
             var user_id = HttpContext.Request.Cookies["user_id"];
             List<Product> cart = _repository.GetCart(Int32.Parse(user_id)).ToList();
 
+            TempData["SuccessOrder"] = "0";
+            TempData.Keep("SuccessOrder");
+
             return View(cart);
         }
 
@@ -239,6 +242,9 @@ namespace Project1.Controllers
             //clear cart
             cart.Clear();
             _repository.ClearCart(Int32.Parse(user_id));
+
+            TempData["SuccessOrder"] = "1";
+            TempData.Keep("SuccessOrder");
 
             return View(cart);
         }

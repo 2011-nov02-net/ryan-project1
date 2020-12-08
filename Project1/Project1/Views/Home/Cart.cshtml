@@ -25,6 +25,15 @@
 }
 
 <div class="container">
+    @if (TempData["SuccessOrder"].Equals("1") && TempData["SuccessOrder"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Order Placed Successfully!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
     <h1 style="margin-top: 1em;">@Html.DisplayName(HttpContextAccessor.HttpContext.Request.Cookies["user_name"])'s Products</h1>
 
     <table class="table">
