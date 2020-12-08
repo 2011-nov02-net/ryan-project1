@@ -48,8 +48,8 @@
                 <h3>@Html.DisplayFor(x => x.ProductName)</h3>
                 <h4>$@Html.DisplayFor(x => x.ProductPrice)</h4>
                 <p>Qty In Stock: @Html.DisplayFor(x => x.ProductQty)</p>
-                <form class="form-inline" asp-action="Product">
-                    <div class="form-group">
+                <form class="form" asp-action="Product">
+                    <div class="form-group form-row" style="width: 50%">
                         <label for="locationSelect">Select a Store:</label>
                         <select class="form-control" id="locationSelect" asp-for="LocationId">
                             @{
@@ -60,15 +60,19 @@
                             }
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    <label for="locationSelect" style="padding: 0 1em 0 1em">Qty:</label>
-                    <select class="form-control" id="qtySelect" asp-for="ProductQty">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <div class="form-row" style="width: 50%">
+                        <label for="locationSelect" style="padding: 0 1em 0 1em">Qty:</label>
+                        <select class="form-control" id="qtySelect" asp-for="ProductQty">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-row" style="margin-top: 1em">
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </div>
                     @Html.HiddenFor(x => x.ProductId)
                     @Html.HiddenFor(x => x.ProductPrice)
                 </form>

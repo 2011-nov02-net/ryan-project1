@@ -20,7 +20,12 @@ namespace Project1.Controllers
             _logger = logger;
             _repository = repository;
         }
-
+        /// <summary>
+        /// Index Action Method
+        /// Will send user to login screen if not logged in, or display homepage
+        /// </summary>
+        /// <returns>Homepage or Login</returns>
+        //Get Index
         public IActionResult Index()
         {
             if (HttpContext.Request.Cookies["user_id"] != null)
@@ -34,12 +39,21 @@ namespace Project1.Controllers
             }
         }
 
+        /// <summary>
+        /// Sends user to login page
+        /// </summary>
+        /// <returns>Login View</returns>
         //GET Login
         public IActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// If input is valid, will log the user in
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Back to login if error or to home page</returns>
         //POST Login
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -70,12 +84,21 @@ namespace Project1.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Sends user to register page
+        /// </summary>
+        /// <returns>Register View</returns>
         //GET Register
         public IActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// If input is valid, will create a new user and send the user to login page
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Login page or register again</returns>
         //POST Register
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,6 +125,11 @@ namespace Project1.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Will show user the product page to add to cart
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Product page</returns>
         //GET Product
         public IActionResult Product(int id)
         {
@@ -119,6 +147,11 @@ namespace Project1.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// If input is valid, adds product to cart
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns>Product page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Product(ProductLocationViewModel p)
@@ -148,6 +181,10 @@ namespace Project1.Controllers
             return View(p);
         }
 
+        /// <summary>
+        /// Logs user out
+        /// </summary>
+        /// <returns>Sends to login page</returns>
         //Logout
         public IActionResult Logout()
         {
@@ -159,6 +196,10 @@ namespace Project1.Controllers
             return RedirectToAction("Login");
         }
 
+        /// <summary>
+        /// Gets the users cart info
+        /// </summary>
+        /// <returns>Sends to cart view</returns>
         //Get Cart
         public IActionResult Cart()
         {
@@ -169,18 +210,38 @@ namespace Project1.Controllers
             return View(cart);
         }
 
+        /// <summary>
+        /// Places an order
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns>Cart View</returns>
         //Post Cart
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Cart(List<Product> p)
         {
             //place order
+            int order_id = _repository.GetLastOrderId();
+            var user_id = HttpContext.Request.Cookies["user_id"];
+            decimal total = 0;
+            List<Product> cart = _repository.GetCart(Int32.Parse(user_id)).ToList();
+            foreach (var item in cart)
+            {
+                total += item.ProductPrice * item.ProductQty;
+            }
 
+            Order order = new Order(order_id + 1, Int32.Parse(user_id), DateTime.Now, 1 , total);
+            _repository.PlaceOrder(order);
+
+            //place order items
+            int last_order = _repository.GetLastOrderId();
+            _repository.PlaceOrderItems(cart, last_order);
 
             //clear cart
+            cart.Clear();
+            _repository.ClearCart(Int32.Parse(user_id));
 
-
-            return View();
+            return View(cart);
         }
 
     }

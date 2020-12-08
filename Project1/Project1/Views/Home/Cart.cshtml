@@ -6,6 +6,7 @@
 
     var user_type = HttpContextAccessor.HttpContext.Request.Cookies["user_type"];
     var user_id = HttpContextAccessor.HttpContext.Request.Cookies["user_id"];
+    decimal total = 0;
     if (user_type == "2")
     {
         Layout = "~/Views/Shared/_LayoutAdmin.cshtml" ;
@@ -50,7 +51,7 @@
                         @Html.DisplayFor(modelItem => item.ProductName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                        $@Html.DisplayFor(modelItem => item.ProductPrice)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ProductQty)
@@ -59,9 +60,11 @@
                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
+                total += item.ProductPrice * item.ProductQty;
             }
         </tbody>
     </table>
+    <p style="text-align: right"><strong>Grand Total: $@total.ToString("0.##")</strong></p>
     <form asp-action="Cart">
         <button type="submit" class="btn btn-primary float-right">Complete Order</button>
     </form>

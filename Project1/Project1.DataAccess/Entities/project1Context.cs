@@ -30,7 +30,7 @@ namespace Project1.DataAccess.Entities
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("");
+                //optionsBuilder.UseSqlServer();
             }
         }
 
@@ -38,8 +38,7 @@ namespace Project1.DataAccess.Entities
         {
             modelBuilder.Entity<Cart>(entity =>
             {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK__Cart__1788CC4C1B04C228");
+                entity.HasKey(e => e.UserId);
 
                 entity.ToTable("Cart", "Project1");
 
@@ -50,20 +49,17 @@ namespace Project1.DataAccess.Entities
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.LocationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Cart__LocationId__71D1E811");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Cart__ProductId__70DDC3D8");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.User)
                     .WithOne(p => p.Cart)
                     .HasForeignKey<Cart>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Cart__UserId__6FE99F9F");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Order>(entity =>

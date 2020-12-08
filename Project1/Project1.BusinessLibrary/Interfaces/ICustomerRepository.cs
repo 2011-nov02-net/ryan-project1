@@ -13,5 +13,9 @@ namespace Project1.BusinessLibrary.Interfaces
         Product GetProductFromId(int id);
         void AddItemToCart(Product p, int custId, int locationId);
         IEnumerable<Product> GetCart(int userid);
+        void PlaceOrder(Order o);
+        void PlaceOrderItems(List<Product> items, int lastid);
+        int GetLastOrderId();
+        void ClearCart(int userid);
     }
 }

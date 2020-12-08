@@ -3,10 +3,10 @@ using Xunit;
 
 namespace Project1.Testing
 {
-    public class UnitTest1
+    public class AdminControllerTests
     {
         [Fact]
-        public void Test1()
+        public void DisplayLocations()
         {
 
         }

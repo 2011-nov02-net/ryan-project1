@@ -43,7 +43,7 @@
                         @Html.DisplayFor(modelItem => item.ProductQty)
                     </td>
                 </tr>
-                total += item.ProductPrice;
+                total += item.ProductPrice * item.ProductQty;
                 Console.WriteLine(total);
             }
         </tbody>

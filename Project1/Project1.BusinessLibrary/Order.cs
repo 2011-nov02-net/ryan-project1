@@ -31,5 +31,13 @@ namespace Project1.BusinessLibrary
             OrderStoreLocationId = locationId;
             OrderTotal = total;
         }
+
+        public Order(int id, int custId, DateTime time, decimal total)
+        {
+            OrderId = id;
+            OrderCustomerId = custId;
+            OrderTime = time;
+            OrderTotal = total;
+        }
     }
 }
