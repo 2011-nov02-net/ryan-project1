@@ -1,5 +1,6 @@
 ﻿using Project1.BusinessLibrary.Interfaces;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project1.BusinessLibrary
 {
@@ -8,10 +9,17 @@ namespace Project1.BusinessLibrary
     /// </summary>
     public class Order : IOrder
     {
+        [Display(Name = "Order Id")]
         public int OrderId { get; }
+
+        [Display(Name = "Customer Id")]
         public int OrderCustomerId { get; }
+
+        [Display(Name = "Order Time")]
         public DateTime OrderTime { get; }
         public int OrderStoreLocationId { get; }
+
+        [Display(Name = "Order Total")]
         public decimal OrderTotal { get; }
 
         public Order(int id, Project1.BusinessLibrary.Customer cust, DateTime time, Project1.BusinessLibrary.StoreLocation location, decimal total)
